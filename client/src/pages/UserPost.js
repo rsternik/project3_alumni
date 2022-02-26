@@ -6,29 +6,28 @@ import { useQuery } from '@apollo/client';
 
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
-import { QUERY_SINGLE_THOUGHT, QUERY_USERPOST } from '../utils/queries';
-
-const UserPost = () => {
+const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
-  const { messageId } = useParams();
+  const { thoughtId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_USERPOST, {
+  const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
     // Pass the `thoughtId` URL parameter into query to retrieve this thought's data
-    variables: { messageId: messageId },
+    variables: { thoughtId: thoughtId },
   });
 
-  const message = data?.message || {};
-
+  const thought = data?.thought || {};
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        {message.messageAuthor} <br />
+
+        {thought.thoughtAuthor} <br />
         <span style={{ fontSize: '1rem' }}>
-          posted this{message.createdAt}
+
         </span>
       </h3>
       <div className="bg-light py-4">
@@ -41,15 +40,19 @@ const UserPost = () => {
             lineHeight: '1.5',
           }}
         >
-          {message.messageText}
+
+          {thought.thoughtText}
+
         </blockquote>
       </div>
 
       <div className="my-5">
-        <CommentList comments={message.comments} />
+
+        <CommentList comments={thought.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm messageId={message._id} />
+        <CommentForm thoughtId={thought._id} />
+
       </div>
     </div>
   );
