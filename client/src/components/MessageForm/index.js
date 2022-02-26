@@ -105,4 +105,6 @@ const ThoughtForm = () => {
   );
 };
 
+
 export default MessageForm;
+

@@ -4,7 +4,8 @@ import { useQuery } from '@apollo/client';
 import CommentList from '../components/MessageList';
 import CommentForm from '../components/MessageForm';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+
+import { QUERY_MESSAGE } from '../utils/queries';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_MESSAGE);
@@ -24,7 +25,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <MessageList
-              thoughts={Message}
+              message={Message}
               title="UW post a message"
             />
           )}
