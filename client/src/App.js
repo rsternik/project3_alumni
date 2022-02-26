@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloPriver } from '@Apollo/client';
-import { BrowerRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import UserPost from './pages/UserPost';
@@ -23,7 +23,7 @@ function App() {
                         <Home />
                     </Route>
                 <Route exact path="message/:messageID">
-                    <singleMessage />
+                    <UserPost />
                 </Route>
                 </div>
                 <Footer />
