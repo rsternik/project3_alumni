@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS } from '../../utils/queries';
+import { ADD_MESSAGE } from '../../utils/mutations';
+import { QUERY_MESSAGE } from '../../utils/queries';
 
 const ThoughtForm = () => {
   const [formState, setFormState] = useState({
-    thoughtText: '',
-    thoughtAuthor: '',
+    messageText: '',
+    messageAuthor: '',
   });
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    update(cache, { data: { addThought } }) {
+  const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
+    update(cache, { data: { addMessage } }) {
       try {
-        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { thoughts } = cache.readQuery({ query: QUERY_MESSAGE });
 
         cache.writeQuery({
-          query: QUERY_THOUGHTS,
-          data: { thoughts: [addThought, ...thoughts] },
+          query: QUERY_MESSAGE,
+          data: { message: [addMessage, ...message] },
         });
       } catch (e) {
         console.error(e);
@@ -30,13 +30,13 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const { data } = await addMessage({
         variables: { ...formState },
       });
 
       setFormState({
-        thoughtText: '',
-        thoughtAuthor: '',
+        messageText: '',
+        messageAuthor: '',
       });
     } catch (err) {
       console.error(err);
@@ -46,17 +46,17 @@ const ThoughtForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
+    if (name === 'messageText' && value.length <= 280) {
       setFormState({ ...formState, [name]: value });
       setCharacterCount(value.length);
-    } else if (name !== 'thoughtText') {
+    } else if (name !== 'messageText') {
       setFormState({ ...formState, [name]: value });
     }
   };
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>What's new?</h3>
 
       <p
         className={`m-0 ${
@@ -72,9 +72,9 @@ const ThoughtForm = () => {
       >
         <div className="col-12">
           <textarea
-            name="thoughtText"
-            placeholder="Here's a new thought..."
-            value={formState.thoughtText}
+            name="messageText"
+            placeholder="Sup?"
+            value={formState.messageText}
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
@@ -82,8 +82,8 @@ const ThoughtForm = () => {
         </div>
         <div className="col-12 col-lg-9">
           <input
-            name="thoughtAuthor"
-            placeholder="Add your name to get credit for the thought..."
+            name="messageAuthor"
+            placeholder="please share your name"
             value={formState.thoughtAuthor}
             className="form-input w-100"
             onChange={handleChange}
@@ -92,7 +92,7 @@ const ThoughtForm = () => {
 
         <div className="col-12 col-lg-3">
           <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Thought
+            Add Message
           </button>
         </div>
         {error && (
@@ -105,4 +105,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default MessageForm;

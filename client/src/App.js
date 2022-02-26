@@ -1,11 +1,11 @@
 import React from 'react';
-import { ApolloClient, InMemoryCache, ApolloPriver } from '@Apollo/client';
-import { BrowerRouter as Router, Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import UserPost from './pages/UserPost';
-import Header from './componets/Header';
-import Footer from './componets/Footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const client = new ApolloClient({
     uri: '/graphql',

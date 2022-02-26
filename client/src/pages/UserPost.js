@@ -55,4 +55,4 @@ const SingleThought = () => {
   );
 };
 
-export default SingleThought;
+export default UserPost;
