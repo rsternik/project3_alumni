@@ -1,15 +1,15 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import CommentList from '../components/MessageList';
-import CommentForm from '../components/MessageForm';
+import MessageList from '../components/MessageList';
+import MessageForm from '../components/MessageForm';
 
 
 import { QUERY_MESSAGE } from '../utils/queries';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_MESSAGE);
-  const thoughts = data?.message || [];
+  const message = data?.message || [];
 
   return (
     <main>
