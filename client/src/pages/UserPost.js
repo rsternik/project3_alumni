@@ -1,33 +1,34 @@
 import React from 'react';
 
-// Import the `useParams()` hook from React Router
+// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
-import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
-const SingleThought = () => {
+import { QUERY_USERPOST } from '../utils/queries';
+
+const UserPost = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
-  const { thoughtId } = useParams();
+  const { messageId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
-    // Pass the `thoughtId` URL parameter into query to retrieve this thought's data
-    variables: { thoughtId: thoughtId },
+  const { loading, data } = useQuery(QUERY_USERPOST, {
+    // pass URL parameter
+    variables: { messageId: MessageId },
   });
 
-  const thought = data?.thought || {};
+  const message = data?.message || {};
+
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-
-        {thought.thoughtAuthor} <br />
+        {message.messageAuthor} <br />
         <span style={{ fontSize: '1rem' }}>
-
+          your post {message.createdAt}
         </span>
       </h3>
       <div className="bg-light py-4">
@@ -40,19 +41,15 @@ const SingleThought = () => {
             lineHeight: '1.5',
           }}
         >
-
-          {thought.thoughtText}
-
+          {message.messageText}
         </blockquote>
       </div>
 
       <div className="my-5">
-
-        <CommentList comments={thought.comments} />
+        <CommentList comments={message.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm thoughtId={thought._id} />
-
+        <CommentForm messageId={message._id} />
       </div>
     </div>
   );
