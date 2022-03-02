@@ -1,38 +1,37 @@
 import { gql } from '@apollo/client';
 
-
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
       username
       email
-      message {
+      posts {
         _id
-        messageText
+        postText
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_MESSAGE = gql`
-  query getMessage {
-    message {
+export const QUERY_POSTS = gql`
+  query getPosts {
+    posts {
       _id
-      messageText
-      messageAuthor
+      postText
+      postAuthor
       createdAt
     }
   }
 `;
 
-export const QUERY_USERPOST = gql`
-  query getUserPost($messageId: ID!) {
-    message(messageID: $messageId) {
+export const QUERY_SINGLE_POST = gql`
+  query getSinglePost($postId: ID!) {
+    post(postId: $postId) {
       _id
-      messageText
-      messageAuthor
+      postText
+      postAuthor
       createdAt
       comments {
         _id
@@ -50,10 +49,10 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      message {
+      posts {
         _id
-        messageText
-        messageAuthor
+        postText
+        postAuthor
         createdAt
       }
     }

@@ -1,32 +1,31 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import MessageList from '../components/MessageList';
-import MessageForm from '../components/MessageForm';
+import PostList from '../components/PostList';
+import PostForm from '../components/PostForm';
 
-
-import { QUERY_MESSAGE } from '../utils/queries';
+import { QUERY_POSTS } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_MESSAGE);
-  const message = data?.message || [];
+  const { loading, data } = useQuery(QUERY_POSTS);
+  const posts = data?.posts || [];
 
   return (
     <main>
-      <div className="">
+      <div className="flex-row justify-center">
         <div
-          className="\"
-          style={{ border: '' }}
+          className="col-12 col-md-10 mb-3 p-3"
+          style={{ border: '1px dotted #1a1a1a' }}
         >
-          <MessageForm />
+          <PostForm />
         </div>
-        <div className="">
+        <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <MessageList
-              message={message}
-              title="UW post a message"
+            <PostList
+              posts={posts}
+              title="Some Feed for Post(s)..."
             />
           )}
         </div>
