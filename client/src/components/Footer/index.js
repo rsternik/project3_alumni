@@ -25,7 +25,7 @@ const Footer = () => {
           >
             ❤️
           </span>{' '}
-          by UW Bootcamp Students.
+          by Group 5.
         </h4>
       </div>
     </footer>
