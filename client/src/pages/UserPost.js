@@ -15,7 +15,7 @@ const UserPost = () => {
 
   const { loading, data } = useQuery(QUERY_USERPOST, {
     // pass URL parameter
-    variables: { messageId: MessageId },
+    variables: { messageId: messageId },
   });
 
   const message = data?.message || {};
