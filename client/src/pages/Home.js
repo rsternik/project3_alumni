@@ -25,7 +25,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <MessageList
-              message={Message}
+              message={message}
               title="UW post a message"
             />
           )}

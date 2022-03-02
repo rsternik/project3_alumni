@@ -7,7 +7,7 @@ import { QUERY_MESSAGE, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
+const MessageForm = () => {
   const [messageText, setMessageText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
@@ -45,7 +45,7 @@ const ThoughtForm = () => {
         },
       });
 
-      setThoughtText('');
+      setMessageText('');
     } catch (err) {
       console.error(err);
     }
@@ -81,7 +81,7 @@ const ThoughtForm = () => {
               <textarea
                 name="messageText"
                 placeholder="new message"
-                value={thoughtText}
+                value={messageText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
