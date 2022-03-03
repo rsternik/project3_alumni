@@ -1,10 +1,12 @@
+// Imports
 import React from 'react';
 
+// Comment List consts
 const CommentList = ({ comments = [] }) => {
   if (!comments.length) {
     return <h3>No Comments Yet</h3>;
   }
-
+  // Retrun HTML
   return (
     <>
       <h3
