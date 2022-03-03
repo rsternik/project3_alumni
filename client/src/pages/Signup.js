@@ -1,11 +1,11 @@
+// Imports 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
+// Signup form consts and events
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
@@ -13,31 +13,30 @@ const Signup = () => {
     password: '',
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
-
+  //  Change Handler
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+    // State Set
     setFormState({
       ...formState,
       [name]: value,
     });
   };
-
+  // Submit form handler
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
-
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      // Auth Token
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
   };
-
+  // Return HTML
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
@@ -84,7 +83,6 @@ const Signup = () => {
                 </button>
               </form>
             )}
-
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}

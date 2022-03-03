@@ -1,6 +1,8 @@
+// Imports
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Consts & Events
 const PostList = ({
   posts,
   title,
@@ -10,7 +12,7 @@ const PostList = ({
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
-
+  // Return HTML
   return (
     <div>
       {showTitle && <h3>{title}</h3>}

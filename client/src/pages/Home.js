@@ -1,15 +1,15 @@
+// Imports
 import React from 'react';
 import { useQuery } from '@apollo/client';
-
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
-
 import { QUERY_POSTS } from '../utils/queries';
 
+// Consts & queries
 const Home = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
-
+  // Return HTML
   return (
     <main>
       <div className="flex-row justify-center">

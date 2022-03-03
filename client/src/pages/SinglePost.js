@@ -1,25 +1,19 @@
+// Imports 
 import React from 'react';
-
-// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
-
 import { QUERY_SINGLE_POST } from '../utils/queries';
 
+// Post consts, queries and events/handlers
 const SinglePost = () => {
-  // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { postId } = useParams();
-
   const { loading, data } = useQuery(QUERY_SINGLE_POST, {
-    // pass URL parameter
     variables: { postId: postId },
   });
-
   const post = data?.post || {};
-
+  // Conditional
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -44,7 +38,6 @@ const SinglePost = () => {
           {post.postText}
         </blockquote>
       </div>
-
       <div className="my-5">
         <CommentList comments={post.comments} />
       </div>
