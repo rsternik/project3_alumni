@@ -1048,18 +1048,22 @@ a:hover {
 }
 
 .card {
-  border: 1px solid #1a1a1a;
+  border: 6px solid hsl(0, 0%, 10%);
   margin-bottom: 1rem;
+  
+  
+  
 }
 
 .card .card-header {
   padding: 0.375rem;
   background-color: #2d3e50;
-  color: #d9e9e8;
+  color: gold;
 }
 
 .card .card-body {
   padding: 0.375rem;
+  
 }
 
 .card .card-footer {
@@ -1148,6 +1152,7 @@ label form [type='radio'] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 50vh;
 }
 
 .flex-column {
@@ -1294,6 +1299,7 @@ label form [type='radio'] {
 .col-12 {
   flex: 0 0 100%;
   max-width: 100%;
+  
 }
 
 /* col-sm */
