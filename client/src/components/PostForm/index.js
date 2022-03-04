@@ -1,17 +1,15 @@
+// Imports
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
-
 import Auth from '../../utils/auth';
 
+// Post form const & events
 const PostForm = () => {
   const [postText, setPostText] = useState('');
-
   const [characterCount, setCharacterCount] = useState(0);
-
   const [addPost, { error }] = useMutation(ADD_POST, {
     update(cache, { data: { addPost } }) {
       try {
@@ -24,19 +22,11 @@ const PostForm = () => {
       } catch (e) {
         console.error(e);
       }
-
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, posts: [...me.posts, addPost] } },
-      });
     },
   });
-
+  // Subit form handler
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const { data } = await addPost({
         variables: {
@@ -50,20 +40,18 @@ const PostForm = () => {
       console.error(err);
     }
   };
-
+  // Change Handler
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     if (name === 'postText' && value.length <= 280) {
       setPostText(value);
       setCharacterCount(value.length);
     }
   };
-
+  // Return HTML
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
-
+      <h3>Congratulations alumi fellows!</h3>
       {Auth.loggedIn() ? (
         <>
           <p
@@ -87,7 +75,6 @@ const PostForm = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add Post

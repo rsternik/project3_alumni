@@ -1,7 +1,9 @@
+// Required modules
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Post } = require('../models');
 const { signToken } = require('../utils/auth');
 
+// Resolvers
 const resolvers = {
   Query: {
     users: async () => {
@@ -35,7 +37,7 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError('No user found with this email address!');
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -43,9 +45,7 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-
       return { token, user };
     },
     addPost: async (parent, { postText }, context) => {
@@ -59,7 +59,6 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { posts: post._id } }
         );
-
         return post;
       }
       throw new AuthenticationError('You need to be logged in!');

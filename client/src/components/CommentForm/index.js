@@ -1,20 +1,17 @@
+// Imports
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
 import { ADD_COMMENT } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
 
+// Comment Form Consts & Events
 const CommentForm = ({ postId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-
   const [addComment, { error }] = useMutation(ADD_COMMENT);
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const { data } = await addComment({
         variables: {
@@ -23,26 +20,23 @@ const CommentForm = ({ postId }) => {
           commentAuthor: Auth.getProfile().data.username,
         },
       });
-
       setCommentText('');
     } catch (err) {
       console.error(err);
     }
   };
-
+  // handleChange Event
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     if (name === 'commentText' && value.length <= 280) {
       setCommentText(value);
       setCharacterCount(value.length);
     }
   };
-
+  // Return HTML
   return (
     <div>
-      <h4>What are your thoughts on this thought?</h4>
-
+      <h4>Please post a comment to the class!</h4>
       {Auth.loggedIn() ? (
         <>
           <p
@@ -67,7 +61,6 @@ const CommentForm = ({ postId }) => {
                 onChange={handleChange}
               ></textarea>
             </div>
-
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add Comment
@@ -77,7 +70,7 @@ const CommentForm = ({ postId }) => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to post. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
