@@ -51,7 +51,7 @@ const PostForm = () => {
   // Return HTML
   return (
     <div>
-      <h3>Congratulations alumi fellows!</h3>
+      <h3 className = "secondHeaderText">Congratulations alumi fellows!</h3>
       {Auth.loggedIn() ? (
         <>
           <p
