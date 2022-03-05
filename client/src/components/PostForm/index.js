@@ -65,7 +65,7 @@ const PostForm = () => {
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
+            <div className="col-4 col-lg-9">
               <textarea
                 name="postText"
                 placeholder="Here's a new post..."
