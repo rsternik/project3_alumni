@@ -42,7 +42,7 @@ const PostList = ({
               <p>{post.postText}</p>
             </div>
             <Link
-              className="btn btn-primary btn-block btn-squared"
+              className="btn btn-primary btn-block "
               to={`/posts/${post._id}`}
             >
               Join the discussion on this post.

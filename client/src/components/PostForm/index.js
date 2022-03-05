@@ -71,7 +71,7 @@ const PostForm = () => {
                 placeholder="Here's a new post..."
                 value={postText}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: '1.5', resize: '' }}
                 onChange={handleChange}
               ></textarea>
             </div>

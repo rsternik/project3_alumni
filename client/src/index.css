@@ -1106,6 +1106,7 @@ form select {
 form label,
 form .form-label {
   display: inline-block;
+  border-radius: 1rem;
   font-size: 1.2rem;
   margin: 0.625rem 0 0.25rem 0.3rem;
 }
@@ -1117,8 +1118,8 @@ form .form-input {
   background-color: #ffffff;
   margin: 0.625rem 0;
   font-size: 1.2rem;
-  border: 1px solid #484848;
-  border-radius: 0.3rem;
+  border: 4px solid black;
+  border-radius: .5rem;
 }
 
 form .form-input.form-input-squared {
@@ -1133,6 +1134,7 @@ form [type='radio'] {
 label form [type='checkbox'],
 label form [type='radio'] {
   display: inline-block;
+  
 }
 
 .container {
@@ -1150,9 +1152,11 @@ label form [type='radio'] {
 /* FLEX CONTENT */
 .flex-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  height: 50vh;
+  
+
+  
 }
 
 .flex-column {
@@ -1234,6 +1238,7 @@ label form [type='radio'] {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+
 }
 
 .col-auto {
@@ -1586,6 +1591,7 @@ label form [type='radio'] {
     align-content: center;
   }
 }
+
 
 /* col-xl */
 @media screen and (min-width: 1200px) {
