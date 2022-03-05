@@ -51,7 +51,7 @@ const PostForm = () => {
   // Return HTML
   return (
     <div>
-      <h3>Congratulations alumi fellows!</h3>
+      <h3 className = "secondHeaderText">Congratulations alumi fellows!</h3>
       {Auth.loggedIn() ? (
         <>
           <p
@@ -71,7 +71,7 @@ const PostForm = () => {
                 placeholder="Here's a new post..."
                 value={postText}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: '1.5', resize: '' }}
                 onChange={handleChange}
               ></textarea>
             </div>
