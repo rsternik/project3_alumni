@@ -38,6 +38,8 @@ Do you wanna stay in contact with all the new friends you made? I know I do! Wit
 If you have any questions about this project or would like to report and issue, please email JefreyColegrove@gmail.com
 ***
 ### Example
+![alt text](client\public\classthing.PNG)
 
 ***
 ### Link
+https://alumni-messageboard.herokuapp.com/
